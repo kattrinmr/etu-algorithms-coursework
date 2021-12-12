@@ -1,4 +1,4 @@
-﻿### EtuAlgorithmsCoursework  
+﻿### etu-algorithms-coursework  
  
  ### Курсовая работа.  
  ### Алгоритмы и структуры данных 2 курс.  
