@@ -12,23 +12,22 @@ fun checkVertex(list: MutableList<String>, vertex: String): Boolean {
 }
 
 fun main() {
-    // Чтение из файла
-    val inputStream: InputStream = File("input.txt").inputStream()
-    val lineList = mutableListOf<String>() // Строка файла
-    var trimList: MutableList<String> // Массив из элементов строки файла
-
-
     val graph = mutableListOf<Triple<String, String, Int>>() // String - ребро А, String - ребро B, Int - вес
     val vertex = mutableListOf<String>() // Массив вершин графа
     val mst = mutableListOf<Pair<String, String>>() // Минимальное остовное дерево
     var cost = 0 // Вес остовного дерева
+
+    // Чтение из файла
+    val inputStream: InputStream = File("input.txt").inputStream()
+    val lineList = mutableListOf<String>() // Строка файла
+    var trimList: MutableList<String> // Массив из элементов строки файла
 
     inputStream.bufferedReader().forEachLine { lineList.add(it) }
     lineList.forEach{
         trimList = stringToWords(it)
         graph.add(Triple(trimList[0], trimList[1], trimList[2].toInt()))
 
-        for (i in 0 until graph.size) {
+        for (i in 0 until graph.size) { // Добавляем в массив вершин
             if (checkVertex(vertex, graph[i].first)) vertex.add(graph[i].first)
             if (checkVertex(vertex, graph[i].second)) vertex.add(graph[i].second)
         }
@@ -41,14 +40,14 @@ fun main() {
     // MST
     for (i in 0 until graph.size) {
 
-        var a = graph[i].first
-        var b = graph[i].second
-        var c = graph[i].third
+        val a = graph[i].first
+        val b = graph[i].second
+        val c = graph[i].third
 
-        if (find(a) != find(b)) {
-            mst.add(Pair(a, b))
-            union(a, b)
-            cost += c
+        if (find(a) != find(b)) { // Проверяем, что не в одном и том же множестве
+            mst.add(Pair(a, b)) // Добавляем в минимальное остовное дерево
+            union(a, b) // Объединяем множества
+            cost += c // Суммируем вес
         }
     }
 

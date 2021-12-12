@@ -1,13 +1,15 @@
+// Система непересекающихся множеств
+
 val dsu: MutableMap<String, String> = mutableMapOf()
 
-fun find(v: String): String {
+fun find(v: String): String { // Поиск лидера множества, в котором находится v
     if (dsu[v] != v) {
         dsu[v] = find(dsu[v]!!)
     }
     return dsu[v]!!
 }
 
-fun union(a: String, b: String) {
+fun union(a: String, b: String) { // Объединение двух множеств
     var a = a
     var b = b
 

@@ -1,3 +1,5 @@
+// Реализация сортировки qsort
+
 fun qsort(list: MutableList<Triple<String, String, Int>>, left_: Int, right_: Int) {
 
     var left = left_
